@@ -1,11 +1,17 @@
+puts "🌱 Seeding Owners..."
+o1= Owner.create(name:Faker::Name.name, user_name:"dogluver", password:"lillybear")
+o2= Owner.create(name:Faker::Name.name, user_name:"habsfan", password:"pucklife")
+o3= Owner.create(name:Faker::Name.name, user_name:"bestfixerupper", password:"demogod")
+o4= Owner.create(name:Faker::Name.name, user_name:"homedecorexpert", password:"fluffypillows")
+
 puts "🌱 Seeding Houses..."
 
-h1= House.create(owner_name: Faker::Name.name ,image_url: "https://www.homelight.com/blog/wp-content/uploads/2019/07/how-much-can-you-make-flipping-houses-2.png")
-h2= House.create(owner_name: Faker::Name.name ,image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjnzAUfuF5HnrkpJd9FXcbhS2N6SnUFR-6dw&usqp=CAU")
-h3= House.create(owner_name: Faker::Name.name ,image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSyhSxLTHNuhWpfFUPTpoF8glGuWWYVu9Kog&usqp=CAU")
-h4= House.create(owner_name: Faker::Name.name ,image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS533GkTyNsoazzwftXhiqZutzwsFQ1kLIuTA&usqp=CAU")
-h5= House.create(owner_name: Faker::Name.name ,image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyWBkU8ISyLy-wZ4LQmR-PTl8NU5A1x7z5Nw&usqp=CAU")
-h6= House.create(owner_name: Faker::Name.name ,image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZpVuhodrrjxER2ZabGlIMzYCMNu1E28bRVw&usqp=CAU")
+h1= House.create(house_name: "Three bed cozy home" ,image_url: "https://www.homelight.com/blog/wp-content/uploads/2019/07/how-much-can-you-make-flipping-houses-2.png", owner_id:o1.id)
+h2= House.create(house_name: "Two bed wartime home" ,image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjnzAUfuF5HnrkpJd9FXcbhS2N6SnUFR-6dw&usqp=CAU", owner_id: o1.id)
+h3= House.create(house_name: "Three bed bungalow" ,image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSyhSxLTHNuhWpfFUPTpoF8glGuWWYVu9Kog&usqp=CAU", owner_id:o2.id)
+h4= House.create(house_name: "Four bed in the country" ,image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS533GkTyNsoazzwftXhiqZutzwsFQ1kLIuTA&usqp=CAU", owner_id:o3.id)
+h5= House.create(house_name: "Five bedroom Split level home" ,image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyWBkU8ISyLy-wZ4LQmR-PTl8NU5A1x7z5Nw&usqp=CAU", owner_id:o4.id)
+h6= House.create(house_name: "Spacious barn style home" ,image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZpVuhodrrjxER2ZabGlIMzYCMNu1E28bRVw&usqp=CAU", owner_id:o4.id)
 
 puts "🌱 Seeding addresses..."
 
@@ -28,14 +34,14 @@ r8=Room.create(name:"Home Office", house_id: h2.id)
 
 puts "🌱 Seeding projects..."
 
-p1=Project.create(name:"Cabinets",description: "Ripping out old cabinets and replacing with white cabinets with brass hardware", room_id:r1.id)
-p2=Project.create(name:"Fireplace",description: "Replacing old stone fireplace for modern tile and adding mantle", room_id:r2.id)
-p3=Project.create(name:"Glass door shower",description: "Removing old tub shower and building walk in shower with glass door", room_id:r3.id)
-p4=Project.create(name:"Hardwood floors",description: "Removing carpet and putting down hardwood floors", room_id:r4.id)
-p5=Project.create(name:"Drywall",description: "Adding drywall to use basement for entertainment room", room_id:r5.id)
-p6=Project.create(name:"New sink",description: "Replacing pink sink and vanity with a white and modern one", room_id:r6.id)
-p7=Project.create(name:"Removing popcorn ceiling",description: "Scraping off popcorn ceiling and painting ceiling white ", room_id:r7.id)
-p8=Project.create(name:"Painting",description: "Painting over bright yellow walls with a neutral grey blue color", room_id:r8.id)
+p1=Project.create(name:"Cabinets",description: "Ripping out old cabinets and replacing with white cabinets with brass hardware", room_id:r1.id, status: false)
+p2=Project.create(name:"Fireplace",description: "Replacing old stone fireplace for modern tile and adding mantle", room_id:r2.id, status: false)
+p3=Project.create(name:"Glass door shower",description: "Removing old tub shower and building walk in shower with glass door", room_id:r3.id, status: false)
+p4=Project.create(name:"Hardwood floors",description: "Removing carpet and putting down hardwood floors", room_id:r4.id, status: false)
+p5=Project.create(name:"Drywall",description: "Adding drywall to use basement for entertainment room", room_id:r5.id, status: false)
+p6=Project.create(name:"New sink",description: "Replacing pink sink and vanity with a white and modern one", room_id:r6.id, status: false)
+p7=Project.create(name:"Removing popcorn ceiling",description: "Scraping off popcorn ceiling and painting ceiling white ", room_id:r7.id, status: false)
+p8=Project.create(name:"Painting",description: "Painting over bright yellow walls with a neutral grey blue color", room_id:r8.id, status: true)
 
 puts "🌱 Seeding parts..."
 
