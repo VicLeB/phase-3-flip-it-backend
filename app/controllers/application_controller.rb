@@ -16,5 +16,4 @@ class ApplicationController < Sinatra::Base
     house.to_json(include: {rooms: {include: {projects: {include: [:tools, :parts]}}}})
   end
 
-
 end

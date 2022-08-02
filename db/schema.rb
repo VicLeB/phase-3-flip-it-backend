@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_30_143433) do
+ActiveRecord::Schema.define(version: 2022_08_02_185327) do
 
   create_table "addresses", force: :cascade do |t|
     t.string "street_name"
@@ -21,10 +21,15 @@ ActiveRecord::Schema.define(version: 2022_07_30_143433) do
   end
 
   create_table "houses", force: :cascade do |t|
-    t.string "owner_name"
+    t.string "house_name"
     t.string "image_url"
-    t.integer "address_id"
-    t.integer "room_id"
+    t.integer "owner_id"
+  end
+
+  create_table "owners", force: :cascade do |t|
+    t.string "name"
+    t.string "user_name"
+    t.string "password"
   end
 
   create_table "parts", force: :cascade do |t|
@@ -37,15 +42,12 @@ ActiveRecord::Schema.define(version: 2022_07_30_143433) do
   create_table "projects", force: :cascade do |t|
     t.string "name"
     t.string "description"
-    t.integer "part_id"
-    t.integer "tool_id"
     t.integer "room_id"
+    t.boolean "status"
   end
 
   create_table "rooms", force: :cascade do |t|
     t.string "name"
-    t.string "type"
-    t.integer "project_id"
     t.integer "house_id"
   end
 
