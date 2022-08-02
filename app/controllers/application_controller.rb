@@ -10,4 +10,11 @@ class ApplicationController < Sinatra::Base
     houses = House.all
     houses.to_json(include: :address)
   end
+
+  get "/houses/:id" do
+    house=House.find(params[:id])
+    house.to_json(include: {rooms: {include: {projects: {include: [:tools, :parts]}}}})
+  end
+
+
 end
