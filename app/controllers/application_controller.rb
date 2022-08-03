@@ -81,5 +81,11 @@ class ApplicationController < Sinatra::Base
     tool.to_json
   end
 
+  delete "/rooms/:id" do
+    room=Room.find(params[:id])
+    room.destroy
+    room.to_json
+  end
+
 end
 
