@@ -13,10 +13,35 @@ class ApplicationController < Sinatra::Base
     houses.to_json(include: [:owner, :address])
   end
 
+  ##used in HouseForm.js
   get "/houses/:id" do
     house=House.find(params[:id])
     house.to_json(include: {rooms: {include: {projects: {include: [:tools, :parts]}}}})
   end
+
+##used in HouseForm
+  get "/houses/:id/address" do
+    house= House.find(params[:id]).address
+    house.to_json(include: :house)
+  end
+
+  get "/houses/:id/rooms" do
+    house= House.find(params[:id]).rooms
+    house.to_json
+  end
+
+##used in HouseForm
+  get "/rooms/:id" do
+    room= Room.find(params[:id])
+    room.to_json(include: :projects)
+  end
+
+  ##Use is HouseForm
+  get "/projects/:id" do
+    project = Project.find(params[:id])
+    project.to_json(include: [:parts, :tools])
+  end
+
 
   get "/houses/:id/projects" do
     House.find(params[:id]).projects.to_json
@@ -31,6 +56,12 @@ class ApplicationController < Sinatra::Base
     house = House.find(params[:id]).projects
     house.to_json(include: :parts)
   end
+
+  # get "/projects/:id" do
+  #   project = Project.find(params[:id]).parts
+  #   cost =project.map{|part| part.cost}
+  #   cost.to_json
+  # end
 
   delete "/projects/:id" do
     project = Project.find(params[:id])
@@ -49,8 +80,6 @@ class ApplicationController < Sinatra::Base
     tool.destroy
     tool.to_json
   end
-
-
 
 end
 
