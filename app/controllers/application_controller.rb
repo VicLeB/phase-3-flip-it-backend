@@ -87,5 +87,13 @@ class ApplicationController < Sinatra::Base
     room.to_json
   end
 
+  patch "/projects/:id" do
+    project = Project.find(params[:id])
+    project.update(
+      status: params[:status]
+    )
+    project.to_json
+  end
+
 end
 
