@@ -116,14 +116,17 @@ class ApplicationController < Sinatra::Base
       name: params[:name],
       house_id: params[:house_id]
     )
+    new.to_json
   end
 
   post "/projects" do
     new = Project.create(
       name: params[:name],
       description: params[:description],
-      room_id: params[:room_id]
+      room_id: params[:room_id],
+      status: false
     )
+    new.to_json
   end
 
   post "/tools" do
@@ -132,6 +135,7 @@ class ApplicationController < Sinatra::Base
       image_url: params[:image_url],
       project_id: params[:project_id]
     )
+    new.to_json
   end
 
   post "/parts" do
@@ -141,6 +145,7 @@ class ApplicationController < Sinatra::Base
       cost: params[:cost],
       project_id: params[:project_id]
     )
+    new.to_json
   end
 
 end
