@@ -111,5 +111,37 @@ class ApplicationController < Sinatra::Base
     ).to_json
   end
 
+  post "/rooms" do
+    new = Room.create(
+      name: params[:name],
+      house_id: params[:house_id]
+    )
+  end
+
+  post "/projects" do
+    new = Project.create(
+      name: params[:name],
+      description: params[:description],
+      room_id: params[:room_id]
+    )
+  end
+
+  post "/tools" do
+    new = Tool.create(
+      name: params[:name],
+      image_url: params[:image_url],
+      project_id: params[:project_id]
+    )
+  end
+
+  post "/parts" do
+    new = Part.create(
+      name: params[:name],
+      image_url: params[:image_url],
+      cost: params[:cost],
+      project_id: params[:project_id]
+    )
+  end
+
 end
 
