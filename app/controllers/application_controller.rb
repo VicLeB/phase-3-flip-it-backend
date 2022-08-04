@@ -8,6 +8,7 @@ class ApplicationController < Sinatra::Base
     { message: "Good luck with your project!" }.to_json
   end
 
+##used in HouseSearch.js
   get "/houses" do
     houses = House.all
     houses.to_json(include: [:owner, :address])
@@ -93,6 +94,21 @@ class ApplicationController < Sinatra::Base
       status: params[:status]
     )
     project.to_json
+  end
+
+  post "/houses" do
+    new= House.create(
+      house_name: params[:house_name],
+      image_url: params[:image_url]
+    )
+    new.to_json
+    Address.create(
+      street_name: params[:street_name],
+      city: params[:city],
+      state: params[:state],
+      zip_code: params[:zip_code],
+      house_id: new.id
+    ).to_json
   end
 
 end
